@@ -10,7 +10,6 @@
 /// <reference path="jwt-simple/jwt-simple.d.ts" />
 /// <reference path="moment/moment-node.d.ts" />
 /// <reference path="moment/moment.d.ts" />
-/// <reference path="mongoose/mongoose.d.ts" />
 /// <reference path="morgan/morgan.d.ts" />
 /// <reference path="nedb/nedb.d.ts" />
 /// <reference path="nodemailer-direct-transport/nodemailer-direct-transport.d.ts" />

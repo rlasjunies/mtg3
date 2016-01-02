@@ -1,5 +1,4 @@
-﻿//import * as mongoose from "mongoose";
-import * as mtg from "../services/mtg";
+﻿import * as mtg from "../services/mtg";
 import * as path from "path";
 
 // import * as $Config from "./config";
