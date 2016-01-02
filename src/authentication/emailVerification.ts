@@ -10,7 +10,7 @@ import * as nodemailer_smtp_transport from "nodemailer-smtp-transport";
 import * as $ConfigSecret from "../services/configSecret";
 import * as $Config from "../services/config";
 //import * as xUser from "../shared/user";
-import * as mdlUser from "../models/users";
+import * as mdlUser from "../users/user.model";
 import * as mtg from "../services/mtg";
 
 interface IModel {
@@ -92,28 +92,28 @@ export function verify(req: e.Request, res: e.Response, next: Function) {
         .catch((err) => {
             return res.status(500);
         })
-    
+
     //     users.findOne({ email: email }, (err:any, userFound: xUser.IUserDocument) => {
     //         if (err) {
     //             return res.status(500);
     //         }
-    // 
+    //
     //         if (!userFound) {
     //             return handleError(res);
     //         }
-    // 
+    //
     //         if (!userFound.active) {
     //             userFound.active = true;
     //         }
-    // 
+    //
     //         userFound.save((err:any, userFound: xUser.IUserDocument): any => {
     //             if (err) {
     //                 return res.status(500);
     //             }
-    // 
+    //
     //             return res.redirect(<string>$Config.config.appUrl[process.env]);
-    //         }); 
-    // 
+    //         });
+    //
     //     });
 
 }

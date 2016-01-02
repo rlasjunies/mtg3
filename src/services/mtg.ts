@@ -1,8 +1,8 @@
 ﻿import {logger as $log} from "./logger";
 import * as stringPolyFill from "./string+";
 import * as path from "path";
-import * as mdlUsers from "../models/users";
-import * as mdlPaints from "../models/paints";
+import * as mdlUsers from "../users/user.dao.ts";
+import * as mdlPaints from "../paints/paint.model.ts";
 
 class Server {
     rootPath: string;
@@ -75,7 +75,11 @@ export function init(rootPath: string) {
                 break;
         }
     }
-    
+
     db.users = new mdlUsers.UsersCollection();
     log.info(`mtg initialized - rootPath:${server.rootPath}`);
 };
+
+
+
+

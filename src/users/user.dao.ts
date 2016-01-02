@@ -1,23 +1,8 @@
-import * as db from "../services/db";
-import * as mtg from "../services/mtg"
 import * as bcrypt from "bcryptjs";
 
-export interface IDocument {
-    _id?: string;
-    version?: number;
-}
-
-export interface IUser extends IDocument {
-    email: string;
-    password?: string;
-    active: boolean;
-    googleId: string;
-    facebookId: string;
-    displayName: string;
-    picture: string;
-    allowedRoles: string[];
-    toJSON?: () => any;
-}
+import * as db from "../services/db";
+import * as mtg from "../services/mtg";
+import * as userMdl from "./user.model.ts";
 
 export class UsersCollection extends db.DB {
     constructor() {
@@ -27,7 +12,7 @@ export class UsersCollection extends db.DB {
             .then((numberOfRecord) => {
                 if (numberOfRecord === 0) {
                     //Initialisation
-                    let newGuestUser: IUser = {
+                    let newGuestUser: userMdl.IUser = {
                         email: "guest@autotest.com",
                         password: "secret",
                         active: true,
@@ -43,7 +28,7 @@ export class UsersCollection extends db.DB {
                             mtg.log.info(`user guest created - change password asap:${JSON.stringify(userGuest) }`);
                             // })
                         });
-                    let newAdminUser: IUser = {
+                    let newAdminUser: userMdl.IUser = {
                         email: "admin@autotest.com",
                         password: "secret",
                         active: true,
@@ -68,7 +53,7 @@ export class UsersCollection extends db.DB {
             });
     }
 
-    createNew(user: IUser): Promise<IUser> {
+    createNew(user: userMdl.IUser): Promise<userMdl.IUserDoc> {
         //TODO parameters check
         //TODO check email format
         //TODO check already exist
@@ -77,8 +62,8 @@ export class UsersCollection extends db.DB {
         user.password = bcrypt.hashSync(user.password, salt);
 
         //return super.insert<IUser>(user);
-        return new Promise<IUser>((resolve,reject)=>{
-            super.insert<IUser>(user).then((userCreated)=>{
+        return new Promise<userMdl.IUserDoc>((resolve,reject)=>{
+            super.insert<userMdl.IUserDoc>(user).then((userCreated)=>{
                 delete userCreated.password;
                 resolve(userCreated);
             }).catch((err)=>{
@@ -89,23 +74,23 @@ export class UsersCollection extends db.DB {
 
     /**
      * Basic update of whole the document
-     * 
+     *
      * TODO: update parts AR in different services
-     * 
+     *
      * @Param {string} userID - the _id value of the document
      * @param {number} d The desired diameter of the circle.
      * @return {Circle} The new Circle object.
      */
-    update(userId: string, query: any): Promise<IUser> {
+    update(userId: string, query: any): Promise<userMdl.IUserDoc> {
         //TODO parameters check
 
-        return super.update<IUser>(userId, query);
+        return super.update<userMdl.IUserDoc>(userId, query);
     }
 
-    findById(id: string): Promise<IUser> {
-        return new Promise<IUser>((resolve, reject) => {
-            super.findOne<IUser>({ _id: id })
-                .then((userFound: IUser) => {
+    findById(id: string): Promise<userMdl.IUserDoc> {
+        return new Promise<userMdl.IUserDoc>((resolve, reject) => {
+            super.findOne<userMdl.IUserDoc>({ _id: id })
+                .then((userFound: userMdl.IUserDoc) => {
                     delete userFound.password;
                     resolve(userFound);
                 })
@@ -126,11 +111,11 @@ export class UsersCollection extends db.DB {
                 });
         });
     };
-    
-    getAll(): Promise<IUser[]> {
-        return new Promise<IUser[]>((resolve, reject) => {
-            super.findAll<IUser>({})
-                .then((usersFound: IUser[]) => {
+
+    getAll(): Promise<userMdl.IUserDoc[]> {
+        return new Promise<userMdl.IUserDoc[]>((resolve, reject) => {
+            super.findAll<userMdl.IUserDoc>({})
+                .then((usersFound: userMdl.IUserDoc[]) => {
                     // if (!usersFound) {
                     //     //delete usersFound.password;
                     // }
@@ -142,10 +127,10 @@ export class UsersCollection extends db.DB {
         });
     };
 
-    findByEmailAndComparePassword(email: string, password: string): Promise<IUser> {
-        return new Promise<IUser>((resolve, reject) => {
-            super.findOne<IUser>({ email: email })
-                .then((userFound: IUser) => {
+    findByEmailAndComparePassword(email: string, password: string): Promise<userMdl.IUserDoc> {
+        return new Promise<userMdl.IUserDoc>((resolve, reject) => {
+            super.findOne<userMdl.IUserDoc>({ email: email })
+                .then((userFound: userMdl.IUserDoc) => {
                     if (userFound) {
                         if (this.comparePassword(password, userFound.password)) {
                             // delete the password property before send back
@@ -163,7 +148,7 @@ export class UsersCollection extends db.DB {
         });
     };
 
-    findByEmail(email: string): Promise<IUser> {
+    findByEmail(email: string): Promise<userMdl.IUserDoc> {
         return super.findOne({ email: email });
     };
 

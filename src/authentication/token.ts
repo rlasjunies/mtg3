@@ -3,9 +3,9 @@ import * as jwt from "jwt-simple";
 import * as moment from "moment";
 import * as $configSecret from "../services/configSecret";
 //import * as $user from '../shared/user';
-import * as mdlUser from "../models/users";
+import * as mdlUser from "../users/user.model";
 
-export function createSendToken(user:mdlUser.IUser, res:express.Response) {
+export function createSendToken(user:mdlUser.IUserDoc, res:express.Response) {
     var payload = {
         sub: user._id,
         // TODO check that the expiration is well managed by the token

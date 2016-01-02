@@ -3,7 +3,7 @@ import * as ts from "./google.typesafe";
 
 import * as libRequest from "request";
 //import * as libUser from "../shared/user";
-import * as mdlUser from "../models/users" 
+import * as mdlUser from "../users/user.model"
 import * as libToken from "./token";
 import * as $ConfigSecret from "../services/configSecret";
 import * as mtg from "../services/mtg";
@@ -67,16 +67,16 @@ export function googleAuth(expReq: express.Request, expRes: express.Response) {
 //                     if (foundUser) {
 //                         return libToken.createSendToken(foundUser, expRes);
 //                     }
-// 
+//
 //                     var userModel = libUser.userModel();
-// 
+//
 //                     var userDoc: libUser.IUserDocument = new userModel({});
-// 
+//
 //                     userDoc.email = profile.email;
 //                     userDoc.displayName = profile.name;
 //                     userDoc.googleId = profile.sub;
 //                     userDoc.picture = profile.picture;
-// 
+//
 //                     userDoc.save((err) => {
 //                         // if (err) return next(err);
 //                         if (err) {
@@ -91,10 +91,10 @@ export function googleAuth(expReq: express.Request, expRes: express.Response) {
                     if (foundUser) {
                         return libToken.createSendToken(foundUser, expRes);
                     }
-                    
+
                     //User doesNotExistCreateit
 //                     var userModel = libUser.userModel();
-// 
+//
 //                     var userDoc: libUser.IUserDocument = new userModel({});
                     var userGoogled:mdlUser.IUser = {
                         email:profile.email,
@@ -107,14 +107,14 @@ export function googleAuth(expReq: express.Request, expRes: express.Response) {
                     }
                     mtg.db.users.createNew(userGoogled)
                         .then((userCreated)=>{
-                            libToken.createSendToken(userCreated, expRes);            
+                            libToken.createSendToken(userCreated, expRes);
                         })
                         .catch((err)=>{
                             throw err;
                         })
                 })
                 .catch((err)=>{
-                    throw err;                    
+                    throw err;
                 });
         });
     });

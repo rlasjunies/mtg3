@@ -1,7 +1,7 @@
 ﻿import * as e from "express";
 import * as mtg from "../services/mtg";
 //import * as $paintsModel from "../shared/paints";
-import * as mdlPaints from "../models/paints";
+import * as mdlPaints from "../paints/paint.model";
 
 var moduleName = "paintsRoutes@";
 
@@ -15,7 +15,7 @@ export function create(expReq: e.Request, expRes: e.Response, next:Function) {
     //newPaint.validate(function (err: any) {
 //         newPaint.save<$paintsModel.IPaintDocument>((err, paint) => {
 //             // if (err) { return expRes.status(500).write({ message: "Error writing job!" }); }
-// 
+//
 //             // mtg.log.debug(moduleName + "@create:\n" + paint);
 //             // mtg.log.profile(moduleName + "@create");
 //             // return expRes.status(200).send(paint);
@@ -25,7 +25,7 @@ export function create(expReq: e.Request, expRes: e.Response, next:Function) {
         .then((paintCreated)=>{
             mtg.log.debug(moduleName + "@create:\n" + paintCreated.description);
             mtg.log.profile(moduleName + "@create");
-            return expRes.status(200).send(paintCreated);            
+            return expRes.status(200).send(paintCreated);
         })
         .catch((errCreatingPainting)=>{
             return expRes.status(500).write({ message: "Error writing job!" + JSON.stringify(errCreatingPainting) });
@@ -37,17 +37,17 @@ export function find(expReq: e.Request, expRes: e.Response, next:Function) {
     mtg.log.profile(moduleName + "@find");
 
 //         var paints: $paintsModel.IPaintModel = $paintsModel.paintModel();
-// 
+//
 //         var qry = {};
 //         if (expReq.params.id) {
 //             qry = { _id: expReq.params.id };
 //         }
-// 
+//
 //         paints.find(qry,(err, paint) => {
 //             if (err) {
 //                 return expRes.status(500).write({ message: "Error getting jobs!" });
 //             }
-// 
+//
 //             mtg.log.debug("expReq.params.id:" + expReq.params.id);
 //             mtg.log.profile(moduleName + "@find");
 //             expRes.status(200).send(paint);
@@ -56,7 +56,7 @@ export function find(expReq: e.Request, expRes: e.Response, next:Function) {
         .then((paintFinding)=>{
             mtg.log.debug("expReq.params.id:" + expReq.params.id);
             mtg.log.profile(moduleName + "@find");
-            expRes.status(200).send(paintFinding);         
+            expRes.status(200).send(paintFinding);
         })
         .catch((errFindingPainting)=>{
             return expRes.status(500).write({ message: "Error getting jobs!" + JSON.stringify(errFindingPainting) });
@@ -71,12 +71,12 @@ export function remove(expReq: e.Request, expRes: e.Response, next:Function) {
 //     if (!expReq.params.id) {
 //         throw new Error("ID parameter is required!");
 //     }
-// 
+//
 //     mdlPaints.findByIdAndRemove(expReq.params.id, (err, paints) => {
 //         if (err) {
 //             return expRes.status(500).write({ message: "Error getting paints!" });
 //         }
-// 
+//
 //         mtg.log.profile(moduleName + "@remove");
 //         expRes.status(200).send(paints);
 //     });
@@ -107,10 +107,10 @@ export function update(expReq: e.Request, expRes: e.Response, next:Function) {
     mtg.db.paints.update(expReq.params.id,newPaint)
         .then((numberOfRecordUpdated)=>{
             mtg.log.profile(moduleName + "@update");
-            expRes.status(200).send(numberOfRecordUpdated);            
+            expRes.status(200).send(numberOfRecordUpdated);
         })
         .catch((errUpdatingPaint)=>{
             mtg.log.profile(moduleName + "@update");
-            expRes.status(200).send(errUpdatingPaint);                        
+            expRes.status(200).send(errUpdatingPaint);
         })
 };

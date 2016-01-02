@@ -1,6 +1,6 @@
 ﻿import * as passport_local from "passport-local";
 //import * as libuser from "../shared/user";
-import * as mdlUser from "../models/users";
+import * as mdlUser from "../users/user.model";
 import * as mtg from "../services/mtg";
 
 var moduleName = "localStratregy - ";
@@ -32,7 +32,7 @@ export function login() {
             })
             .catch((errFindOneUser) => {
                 mtg.log.error("login.findOne error:" + errFindOneUser);
-                //return done(errUserNotFound);                
+                //return done(errUserNotFound);
                 return done(errFindOneUser);
             });
     });
@@ -90,7 +90,7 @@ export function register() {
         //                 email: username,
         //                 password: password
         //             });
-        // 
+        //
         //             newUser.save(function(err) {
         //                 if (err) {
         //                     mtg.log.error("resgister.newUser.save error:" + err);

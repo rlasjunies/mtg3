@@ -1,6 +1,6 @@
 ﻿import * as e from "express";
 //import * as $usersModel from "../shared/user";
-import * as models from "../models/users";
+import * as models from "../users/user.model";
 import * as mtg from "../services/mtg";
 
 var moduleName = "usersRoutes@";
@@ -8,14 +8,14 @@ var moduleName = "usersRoutes@";
 //Create
 export function create(expReq: e.Request, expRes: e.Response, next:Function) {
     mtg.log.profile(`${moduleName}@create`);
-    
+
     mtg.log.warn("TODO - Check user json before insert");
     let user = expReq.body;
-    
+
     mtg.log.warn("Check the expReq.body message");
-    
+
     mtg.db.users.createNew(user)
-        .then((insertedUser)=>{                
+        .then((insertedUser)=>{
             mtg.log.debug(`${moduleName}@create:${insertedUser}`);
             mtg.log.profile(`${moduleName}@create`);
             expRes.status(200).send(user);})
@@ -26,31 +26,31 @@ export function create(expReq: e.Request, expRes: e.Response, next:Function) {
 
 //find
 export function find(expReq: e.Request, expRes: e.Response, next:Function) {
-    mtg.log.profile(moduleName + "@find");      
+    mtg.log.profile(moduleName + "@find");
     if ( expReq.params.id){
         mtg.db.users.findById(expReq.params.id)
             .then((userFound)=>{
                 mtg.log.debug("expReq.params.id:" + expReq.params.id);
                 mtg.log.profile(moduleName + "@find");
-                expRes.status(200).send(userFound);                
+                expRes.status(200).send(userFound);
             })
             .catch((err)=>{
                 expRes.status(500).write({ message: "Error getting users!" });
             });
     }else{
         mtg.db.users.getAll().then((usersFound)=>{
-                expRes.status(200).send(usersFound);                            
+                expRes.status(200).send(usersFound);
         }).catch((err)=>{
-                expRes.status(500).write({ message: "Error getting users!" });            
+                expRes.status(500).write({ message: "Error getting users!" });
         })
     }
-    
+
 };
 
 //remove
 export function remove(expReq: e.Request, expRes: e.Response, next:Function) {
     mtg.log.profile(moduleName + "@remove");
-    
+
     if (expReq.params.id){
         mtg.db.users.findById(expReq.params.id)
             .then((userFound)=>{
@@ -59,16 +59,16 @@ export function remove(expReq: e.Request, expRes: e.Response, next:Function) {
                         .then((numberOfRecordRemoved)=>{
                             mtg.log.debug("remove user:" + expReq.params.id);
                             mtg.log.profile(moduleName + "@remove");
-                            expRes.status(200).send(userFound);                    
+                            expRes.status(200).send(userFound);
                         }).catch((err)=>{
                             mtg.log.error("remove user: message: Error removing users." + expReq.params.id);
                             mtg.log.profile(moduleName + "@remove");
-                            expRes.status(500).write({ message: "Error removing users." + expReq.params.id});                                            
+                            expRes.status(500).write({ message: "Error removing users." + expReq.params.id});
                         });
                 }else{
                     mtg.log.error("remove user: message: Error removing users. User not found" + expReq.params.id);
                     mtg.log.profile(moduleName + "@remove");
-                    expRes.status(500).write({ message: "Error removing users. User not found:" + expReq.params.id});                    
+                    expRes.status(500).write({ message: "Error removing users. User not found:" + expReq.params.id});
                 }
             })
             .catch((err)=>{
@@ -76,19 +76,19 @@ export function remove(expReq: e.Request, expRes: e.Response, next:Function) {
                 mtg.log.profile(moduleName + "@remove");
                 expRes.status(500).write({ message: "Error removing users!:" + expReq.params.id});
             });
-    
+
     }else{
         mtg.log.error("remove user: message: Incorrect id!" + expReq.params.id);
         mtg.log.profile(moduleName + "@remove");
-        expRes.status(500).write({ message: "Incorrect id!" });            
+        expRes.status(500).write({ message: "Incorrect id!" });
     }
-} 
+}
 
 //update
 export function update(expReq: e.Request, expRes: e.Response, next:Function) {
     mtg.log.profile(moduleName + "@update");
     //TODO control parameters
-      
+
     if (!expReq.params.id) {
         throw new Error("ID parameter is required!");
     }
@@ -96,7 +96,7 @@ export function update(expReq: e.Request, expRes: e.Response, next:Function) {
     mtg.db.users.update(expReq.params.id,expReq.body)
         .then((numberOfRecordUpdated)=>{
             mtg.log.profile(moduleName + "@update");
-            expRes.status(200).send({numberOfRecordUpdated:numberOfRecordUpdated});                
+            expRes.status(200).send({numberOfRecordUpdated:numberOfRecordUpdated});
         })
         .catch((err)=>{
             expRes.status(500).write({ message: "Error updating user!" + JSON.stringify(err) });
