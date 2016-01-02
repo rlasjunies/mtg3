@@ -7,32 +7,6 @@ import * as path from "path";
 //import {logger as $log} from "../services/logger";
 var dbstore = require("nedb");
 
-export interface IDbDoc {
-    _id?: string;
-}
-
-// var db0 = new dbstore();
-//mtg.log.info("db path:" + path.join(mtg.server.rootPath, 'mtg0.db'));
-//var db0:any  = new dbstore({ filename: path.join(mtg.server.rootPath, 'mtg0.db') , autoload: true });
-//var db = new DataStore({ filename: path.join(mtg.server.rootPath, 'mtg.db') , autoload: true });
-
-// var doc = { hello: 'world'
-//                , n: 5
-//                , today: new Date()
-//                , nedbIsAwesome: true
-//                , notthere: null
-//                , notToBeSaved: undefined  // Will not be saved
-//                , fruits: [ 'apple', 'orange', 'pear' ]
-//                , infos: { name: 'nedb' }
-//                };
-
-// db.insert<IDbDoc>(doc, function (err, newDoc) {   // Callback is optional
-//   // newDoc is the newly inserted document, including its _id
-//   // newDoc has no key called notToBeSaved since its value was undefined
-//   mtg.log.info(`doc inserted in nedb, id:${newDoc._id}`)
-// });
-
-
 export class DB {
     private db: NeDB.NeDBDataStore;
     constructor(collection: string) {

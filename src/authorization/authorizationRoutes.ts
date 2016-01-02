@@ -1,4 +1,5 @@
-﻿import * as e from "express";
+﻿/// <reference path="../../typings/tsd.d.ts" />
+import * as e from "express";
 import * as fs from "fs-extra";
 import * as mtg from "../services/mtg";
 import * as path from "path";
@@ -31,7 +32,7 @@ export interface IRoles {
 
 export var roles:IRoles = [
     {
-        id: "admin", 
+        id: "admin",
         accessRightCode:[
             "USERS_GET_ID",
             "USERS_POST_CREATE",
@@ -49,7 +50,13 @@ export var roles:IRoles = [
         id:"artist",
         accessRightCode:[]}];
 
-export function getAllRoles(expReq: e.Request, expRes: e.Response, next: Function) {
+export function init(){
+    var rootRoute = "/api/authorization/roles";
+    mtg.routeGetAdd(    rootRoute   ,true, "ROLES_GET_ALL"       , getAllRoles);
+}
+
+
+function getAllRoles(expReq: e.Request, expRes: e.Response, next: Function) {
 
     //expReq.checkParams("id", "id parameter is mandatory").notEmpty().isInt();
 

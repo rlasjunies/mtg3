@@ -1,12 +1,27 @@
-﻿import * as e from "express";
-//import * as $usersModel from "../shared/user";
-import * as models from "../users/user.model";
+/// <reference path="../../typings/tsd.d.ts" />
+
+import * as express from "express";
+
 import * as mtg from "../services/mtg";
 
 var moduleName = "usersRoutes@";
 
+export function init(){
+    var rootRoute = "/api/adm/users/";
+
+    mtg.routePostAdd(   rootRoute           ,true, "USERS_POST_CREATE"  , create);
+    mtg.routeGetAdd(    rootRoute + ":id?"  ,true, "USERS_GET_ID"       , find);
+    mtg.routeDeleteAdd( rootRoute + ":id?"  ,true, "USERS_DELETE_ID"    , remove);
+    mtg.routePutAdd(    rootRoute + ":id?"  , true,"USERS_PUT_ID"       , update);
+
+    //
+    // rootRoute = "/api/adm/users/me";
+    // app.get(rootRoute, authLocal.authenticationCheck, $UsersRoutes.findMe);
+    // app.put(rootRoute, authLocal.authenticationCheck, $UsersRoutes.updateMe);
+}
+
 //Create
-export function create(expReq: e.Request, expRes: e.Response, next:Function) {
+export function create(expReq: express.Request, expRes: express.Response, next:Function) {
     mtg.log.profile(`${moduleName}@create`);
 
     mtg.log.warn("TODO - Check user json before insert");
@@ -25,7 +40,7 @@ export function create(expReq: e.Request, expRes: e.Response, next:Function) {
 };
 
 //find
-export function find(expReq: e.Request, expRes: e.Response, next:Function) {
+export function find(expReq: express.Request, expRes: express.Response, next:Function) {
     mtg.log.profile(moduleName + "@find");
     if ( expReq.params.id){
         mtg.db.users.findById(expReq.params.id)
@@ -48,7 +63,7 @@ export function find(expReq: e.Request, expRes: e.Response, next:Function) {
 };
 
 //remove
-export function remove(expReq: e.Request, expRes: e.Response, next:Function) {
+export function remove(expReq: express.Request, expRes: express.Response, next:Function) {
     mtg.log.profile(moduleName + "@remove");
 
     if (expReq.params.id){
@@ -85,7 +100,7 @@ export function remove(expReq: e.Request, expRes: e.Response, next:Function) {
 }
 
 //update
-export function update(expReq: e.Request, expRes: e.Response, next:Function) {
+export function update(expReq: express.Request, expRes: express.Response, next:Function) {
     mtg.log.profile(moduleName + "@update");
     //TODO control parameters
 
@@ -104,7 +119,7 @@ export function update(expReq: e.Request, expRes: e.Response, next:Function) {
 };
 
 //findMe
-export function findMe(expReq: e.Request, expRes: e.Response, next:Function) {
+export function findMe(expReq: express.Request, expRes: express.Response, next:Function) {
  let msg = `${moduleName}@findMe not implemented yet!`;
     mtg.log.error(msg);
     return expRes.status(500).write({ message: msg });
@@ -112,8 +127,10 @@ export function findMe(expReq: e.Request, expRes: e.Response, next:Function) {
 
 
 //updateMe
-export function updateMe(expReq: e.Request, expRes: e.Response, next:Function) {
+export function updateMe(expReq: express.Request, expRes: express.Response, next:Function) {
  let msg = `${moduleName}@updateMe not implemented yet!`;
     mtg.log.error(msg);
     return expRes.status(500).write({ message: msg });
 };
+
+
