@@ -1,0 +1,6 @@
+node_modules
+built/**/*.js
+built/**/*.js.map
+npm-debug.log
+logs
+*.log
