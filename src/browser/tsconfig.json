@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "module": "umd",
+        "target": "es5",
+        "noImplicitAny": false,
+        "outDir": "../../built/client",
+        "rootDir": ".",
+        "sourceMap": true,
+        "declaration": true
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}

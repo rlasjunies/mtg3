@@ -1,0 +1,1 @@
+namespace mtg.core { export var testTemplate = "";}

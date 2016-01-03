@@ -1,0 +1,1 @@
+namespace mtg.pictures { export var pictureTemplate = "<form name=\'userForm\' ng-submit=\'vm.submit()\' layout=\'column\' layout-align=\'center center\' novalidate>     <img ng-src=\'/pictures/{{vm.pictureFileName}}\' style=\'width:100%;height:auto\' /> </form> ";}

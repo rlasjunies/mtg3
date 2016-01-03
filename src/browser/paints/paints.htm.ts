@@ -1,0 +1,1 @@
+namespace mtg.paints { export var paintsTemplate = "<div layout-fill layout=\'column\' layout-align=\'center center\'>     <h1>Paints</h1>     <div ng-repeat=\'paint in vm.paints\'>{{paint.title}}</div> </div>";}
