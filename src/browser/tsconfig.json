@@ -3,7 +3,7 @@
         "module": "umd",
         "target": "es5",
         "noImplicitAny": false,
-        "outDir": "../../built/client",
+        "outDir": "../../built/browser",
         "rootDir": ".",
         "sourceMap": true,
         "declaration": true
