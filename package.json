@@ -7,12 +7,12 @@
     "REMinstall:dev": "npm install",
     "REMinstall:built": "npm install --prefix ./built",
     "REMinstall": "npm run install:dev --production && npm run install:built",
-    "test": "mocha ./built/test/usersRoute-guest-spec.js",
+    "REMtest": "mocha ./built/test/usersRoute-guest-spec.js",
     "start": "node --use_strict ./built/server/server.js",
-    "start:web": "npm run startwebbrowser & npm start",
-    "startwebbrowser": "start http://localhost:8888",
-    "build:server": "tsc -p src/server",
-    "build:browser": "tsc -p src/browser",
+    "REMstart:web": "npm run startwebbrowser & npm start",
+    "REMstartwebbrowser": "start http://localhost:8888",
+    "REMbuild:server": "tsc -p src/server",
+    "REMbuild:browser": "tsc -p src/browser",
     "version:patch": "npm version patch",
     "version:minor": "npm version minor",
     "version:major": "npm version major"
@@ -43,7 +43,13 @@
     "winston": "^0.8.3"
   },
   "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-changed": "^1.3.0",
+    "gulp-less": "^3.0.5",
+    "gulp-typescript": "^2.10.0",
+    "gulp-watch": "^4.3.5",
     "jspm": "^0.16.19",
+    "run-sequence": "^1.1.5",
     "typescript": "^1.7.3"
   },
   "typings": "built/server/services/mtg.d.ts",
@@ -51,9 +57,13 @@
     "directories": {
       "baseURL": "built/browser"
     },
-    "configFile": "src/browser/config.js",
+    "configFile": "src/browser/jspm_config.js",
     "dependencies": {
-      "angular": "github:angular/bower-angular@^1.4.8"
+      "angular": "github:angular/bower-angular@^1.4.8",
+      "angular-file-upload": "github:danialfarid/ng-file-upload-bower@^11.0.0",
+      "angular-loading-bar": "github:chieffancypants/angular-loading-bar@^0.8.0",
+      "angular-messages": "github:angular/bower-angular-messages@^1.4.8",
+      "satellizer": "npm:satellizer@^0.13.2"
     },
     "devDependencies": {
       "typescript": "npm:typescript@^1.6.2"
