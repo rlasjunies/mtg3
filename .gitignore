@@ -5,6 +5,7 @@ built/**/*.nedb
 built/**/*.d.ts
 built/**/*.html
 built/**/*.css
+built/**/*.ts
 built/browser/jspm_packages
 npm-debug.log
 logs
