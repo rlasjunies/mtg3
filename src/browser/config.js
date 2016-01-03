@@ -8,6 +8,7 @@ System.config({
   },
 
   map: {
+    "angular": "github:angular/bower-angular@1.4.8",
     "angular-animate": "github:angular/bower-angular-animate@1.4.8",
     "angular-file-upload": "github:danialfarid/ng-file-upload-bower@11.0.0",
     "angular-loading-bar": "github:chieffancypants/angular-loading-bar@0.8.0",

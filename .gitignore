@@ -3,6 +3,8 @@ built/**/*.js
 built/**/*.js.map
 built/**/*.nedb
 built/**/*.d.ts
+built/**/*.html
+built/browser/jspm_packages
 npm-debug.log
 logs
 *.log

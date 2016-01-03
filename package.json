@@ -43,7 +43,20 @@
     "winston": "^0.8.3"
   },
   "devDependencies": {
+    "jspm": "^0.16.19",
     "typescript": "^1.7.3"
   },
-  "typings": "built/server/services/mtg.d.ts"
+  "typings": "built/server/services/mtg.d.ts",
+  "jspm": {
+    "directories": {
+      "baseURL": "built/browser"
+    },
+    "configFile": "src/browser/config.js",
+    "dependencies": {
+      "angular": "github:angular/bower-angular@^1.4.8"
+    },
+    "devDependencies": {
+      "typescript": "npm:typescript@^1.6.2"
+    }
+  }
 }
