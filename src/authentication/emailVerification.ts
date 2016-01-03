@@ -29,7 +29,7 @@ export function send(email: string, res: e.Response) {
         sub: email
     };
 
-    var token = jwt.encode(payload, $ConfigSecret.EMAIL_SECRET);
+    var token = jwt.encode(payload, $ConfigSecret.secret.EMAIL_SECRET);
 
     //var nSMTPTransportOptions: NodemailerSMTPTransportOptions = {
 
@@ -37,7 +37,7 @@ export function send(email: string, res: e.Response) {
         service: "Gmail",
         auth: {
             user: "rlasjunies@gmail.com",
-            pass: $ConfigSecret.SMTP_PASS
+            pass: $ConfigSecret.secret.SMTP_PASS
         }
     };
 
@@ -64,7 +64,7 @@ export function send(email: string, res: e.Response) {
 export function verify(req: e.Request, res: e.Response, next: Function) {
     var token = <eExt.RequestId>req.query.token;
 
-    var payload: IPayload = jwt.decode(token, $ConfigSecret.EMAIL_SECRET);
+    var payload: IPayload = jwt.decode(token, $ConfigSecret.secret.EMAIL_SECRET);
 
     var email = payload.sub;
 

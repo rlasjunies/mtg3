@@ -2,7 +2,7 @@
 
 import * as mtg from "./services/mtg";
 
-mtg.init(__dirname);
+mtg.init(__dirname); 
 
 //static files routes
 //mtg.app.use(express.static(__dirname));

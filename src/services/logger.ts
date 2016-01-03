@@ -21,7 +21,7 @@ var myCustomLevels = {
     }
 };
 
-export var logger = new (winston.Logger)({
+export var logger : winston.LoggerInstance = new winston.Logger({
     levels: myCustomLevels.levels,
     colors: myCustomLevels.colors,
     transports: [
@@ -33,5 +33,3 @@ export var logger = new (winston.Logger)({
         // new (winston.transports.File)({ filename: "somefile.log" })
     ]
 });
-
-// module.exports = logger

@@ -35,7 +35,7 @@ export function googleAuth(expReq: express.Request, expRes: express.Response) {
             client_id: tsBody.clientId,
             redirect_uri: tsBody.redirectUri,
             grant_type: "authorization_code",
-            client_secret: $ConfigSecret.GOOGLE_SECRET
+            client_secret: $ConfigSecret.secret.GOOGLE_SECRET
         }
     };
 

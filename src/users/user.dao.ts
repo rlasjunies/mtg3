@@ -2,7 +2,7 @@ import * as bcrypt from "bcryptjs";
 
 import * as db from "../services/db";
 import * as mtg from "../services/mtg";
-import * as userMdl from "./user.model.ts";
+import * as userMdl from "./user.model";
 
 export class UsersCollection extends db.DB {
     constructor() {

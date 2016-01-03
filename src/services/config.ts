@@ -10,4 +10,3 @@
         test: "http://localhost:3000",
     }
 };
-//exports = config

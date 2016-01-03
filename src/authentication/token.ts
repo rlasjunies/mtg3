@@ -22,7 +22,7 @@ export function createSendToken(user:mdlUser.IUserDoc, res:express.Response) {
     //console.log("exp2" + exp.format("unix"););
 
 
-    var token = jwt.encode(payload, $configSecret.JWT_SECRET);
+    var token = jwt.encode(payload, $configSecret.secret.JWT_SECRET);
 
     // RL- attention changement
     return res.status(200).send({

@@ -26,3 +26,4 @@
 /// <reference path="chai/chai.d.ts" />
 /// <reference path="bcrypt/bcrypt.d.ts" />
 /// <reference path="mocha/mocha.d.ts" />
+/// <reference path="es6-promise/es6-promise.d.ts" />

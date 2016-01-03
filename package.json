@@ -2,7 +2,7 @@
   "name": "@mindthegap/api",
   "version": "1.0.0",
   "description": "",
-  "main": "./built/server.js",
+  "main": "./built/services/mtg.js",
   "scripts": {
     "REMinstall:dev": "npm install",
     "REMinstall:built": "npm install --prefix ./built",
@@ -43,5 +43,6 @@
   },
   "devDependencies": {
     "typescript": "^1.7.3"
-  }
+  },
+  "typings": "built/services/mtg.d.ts"
 }

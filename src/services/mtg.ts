@@ -1,11 +1,11 @@
-﻿/// <reference path='../../typings/tsd.d.ts' />
-
+﻿import * as winston from "winston";
 import * as express from "express";
 import * as bodyparser from "body-parser";
 import * as path from "path";
 import * as morgan from "morgan";
 
-import {logger as $log} from "./logger";
+//import {logger as $log} from "./logger";
+import * as $log from "./logger";
 import * as stringPolyFill from "./string+";
 import * as mdlUsers from "../users/user.dao";
 import * as mdlPaints from "../paints/paint.model";
@@ -43,7 +43,7 @@ export enum enumEnvironment {
 }
 
 export var util;// = new Util();
-export var log = $log;
+export var log = $log.logger;
 export var server: Server;// = new Server();
 export var environment: enumEnvironment;
 export var app:express.Application = express();
@@ -60,7 +60,7 @@ morgan.token("statuscolorized", (expReq, expRes): string => {
 
 app.use(morgan(":date[iso] :method :url :statuscolorized :response-time ms - :res[content-length]"));
 
-interface dbCollections {
+export interface dbCollections {
     users: mdlUsers.UsersCollection;
     paints: mdlPaints.PaintsCollection;
 }

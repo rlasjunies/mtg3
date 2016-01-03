@@ -30,7 +30,7 @@ export function authenticationCheck(expReq: express.Request, expRes: express.Res
         var authorization = expReq.headers["authorization"];
         var token = authorization.split(" ")[1];
         try {
-            var payload = jwt.decode(token, $configSecret.JWT_SECRET);
+            var payload = jwt.decode(token, $configSecret.secret.JWT_SECRET);
         } catch (e) {
             payload = {};
         }

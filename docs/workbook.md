@@ -10,6 +10,7 @@
 20160102:
 * remove share/model folder and move everything in the different "owner" folder
 * create core function to register route. The goal is paramaterize the Authentication (boolean) and autorisation (string)
+* test of creating local npm package with typescript
 
 20151121:
 * user management migrated to nedb
