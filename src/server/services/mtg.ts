@@ -70,7 +70,8 @@ export var db: dbCollections = <dbCollections>{};
 export function init(rootPath: string) {
     util = new Util();
     server = new Server(rootPath);
-    app.use(express.static(server.rootPath));
+
+    app.use("/", express.static(path.join(server.rootPath , "/../browser")));
 
     if (!process.env.NODE_ENV) {
         throw "NODE_ENV is missing define: development, testlocal, test or production";
