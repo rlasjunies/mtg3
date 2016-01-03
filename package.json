@@ -2,13 +2,13 @@
   "name": "@mindthegap/api",
   "version": "1.0.0",
   "description": "",
-  "main": "./built/services/mtg.js",
+  "main": "./built/server/services/mtg.js",
   "scripts": {
     "REMinstall:dev": "npm install",
     "REMinstall:built": "npm install --prefix ./built",
     "REMinstall": "npm run install:dev --production && npm run install:built",
     "test": "mocha ./built/test/usersRoute-guest-spec.js",
-    "start": "node --use_strict ./built/server.js",
+    "start": "node --use_strict ./built/server/server.js",
     "start:web": "npm run startwebbrowser & npm start",
     "startwebbrowser": "start http://localhost:8888",
     "build": "tsc",
@@ -44,5 +44,5 @@
   "devDependencies": {
     "typescript": "^1.7.3"
   },
-  "typings": "built/services/mtg.d.ts"
+  "typings": "built/server/services/mtg.d.ts"
 }
