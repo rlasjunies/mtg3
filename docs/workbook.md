@@ -7,6 +7,31 @@
 	=> remove mongoose
 	=> use neDB
 
+20160105:
+* conversion des fichiers htm en htm.ts, import des fichier *.htm
+* utilisation du plug-in gulp-html-to-ts
+    => le plug-in n'est tjrs pas fonctionnel, il faut le corriger ou le forker
+    => tester le download du plugin via github/rlasjunies
+
+reste à finaliser les imports de tous les fichiers
+
+20160104:
+* ajout des fichiers de configuration de angular
+* manque encore le chargement des templates
+=> il faut installer le plug-in JSPM text pour indiquer le format de récupération
+?? quel sera l'impact sur le compilateur TS de la syntaxe ... from "myTpl!text"
+
+20160103:
+* initialisation de la migration vers systemjs
+
+ARRET en-cours;
+* ajout des services, controlleurs dans app.ts un à un
+=> à finir, le problème est que je ne sais quel est le prochain fichier a charger
+
+? est-ce vraiment nécessaire de passer à systemjs?
+? il vaut mieux que le UI soit dans un projet a part; le considérer comme un plug-in du serveur. Comme ça il sera plus facile de migrer vers une autre UI. ( ng2 ;-), mais d'abord il faut finir
+
+
 20160102:
 * remove share/model folder and move everything in the different "owner" folder
 * create core function to register route. The goal is paramaterize the Authentication (boolean) and autorisation (string)

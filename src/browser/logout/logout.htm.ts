@@ -1,1 +1,2 @@
-namespace mtg.logout { export var logoutTemplate = "";}
+//AUTO GENERATED DO NOT MODIFIED HERE 
+ export var template = ''

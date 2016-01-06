@@ -1,1 +1,2 @@
-namespace mtg.pictures { export var pictureTemplate = "<form name=\'userForm\' ng-submit=\'vm.submit()\' layout=\'column\' layout-align=\'center center\' novalidate>     <img ng-src=\'/pictures/{{vm.pictureFileName}}\' style=\'width:100%;height:auto\' /> </form> ";}
+//AUTO GENERATED DO NOT MODIFIED HERE 
+ export var template = '<form name=\'userForm\' ng-submit=\'vm.submit()\' layout=\'column\' layout-align=\'center center\' novalidate>     <img ng-src=\'/pictures/{{vm.pictureFileName}}\' style=\'width:100%;height:auto\' /> </form> '
