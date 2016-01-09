@@ -16,15 +16,16 @@ function route($stateProvider: angular.ui.IStateProvider) {
             views: {
                 "header": {},
                 "container": {
-                    templateUrl: logoutTpl.template ,
+                    template: logoutTpl.template,
                     controller: mtg_logout.moduleName,
                     controllerAs: "vm"
                 },
                 "footer": {}
+
             }
         });
 };
 
-export function ngRegister(appModule:ng.IModule){
+export function ngRegister(appModule: ng.IModule) {
     appModule.config(route);
 };
