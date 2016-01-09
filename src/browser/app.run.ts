@@ -85,3 +85,8 @@ export function run(
     //        $window.opener.postMessage(code, $window.location.origin);
     //    }
 // }
+
+
+export function ngRegister(appModule: ng.IModule) {
+    appModule.run(run);
+};

@@ -101,11 +101,11 @@ picturesRoute.ngRegister(spa);
 registerRoute.ngRegister(spa);
 usersRoute.ngRegister(spa);
 
+app_run.ngRegister(spa);
+
     // .config(["cfpLoadingBarProvider", function(cfpLoadingBarProvider) {
     //     cfpLoadingBarProvider.includeSpinner = false;
     // }]);
 
-    //.run(app_run.run);
-// }
 console.log("app.js loaded!");
 export let name: string = "app"
