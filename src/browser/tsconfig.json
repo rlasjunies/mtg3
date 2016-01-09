@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "module": "umd",
+        "module": "system",
         "target": "es5",
         "noImplicitAny": false,
         "outDir": "../../built/browser",

@@ -1,36 +1,35 @@
 ﻿/// <reference path="../../../typings/browser.d.ts"/>
-module appState {
-    "use strict";
+import * as mtg_header from "../header/headerController";
+import * as mtg_paints from "../paints/paintsController";
+import * as appState from "../appState";
+import * as headerTpl from '../header/header.htm';
+import * as paintsTpl from './paints.htm';
 
-    export var paintsState: string = "paints";
-    export var paintsUrl: string = "/paints";
-}
-module mtg.views.paints {
-    "use strict";
+"use strict";
 
-    route.$inject = [
-        "$stateProvider"
-    ];
-    function route($stateProvider: angular.ui.IStateProvider) {
-        $stateProvider
-            .state(appState.paintsState, {
-                url: appState.paintsUrl,
-                views: {
-                    "header": {
-                        template: mtg.header.headerTemplate,
-                        controller: mtg.header.headerControllerStringName,
-                        controllerAs: "vm",
-                     },
-                    "container": {
-                        template: mtg.paints.paintsTemplate,
-                        controller: mtg.paints.paintsControllerStringName,
-                        controllerAs: "vm",
-                    },
-                    "footer": {}
-                }
-            });
-    };
-    angular
-        .module("app")
-        .config(route);
-}
+route.$inject = [
+    "$stateProvider"
+];
+function route($stateProvider: angular.ui.IStateProvider) {
+    $stateProvider
+        .state(appState.paintsState, {
+            url: appState.paintsUrl,
+            views: {
+                "header": {
+                    template: headerTpl.template,
+                    controller: mtg_header.moduleName,
+                    controllerAs: "vm",
+                },
+                "container": {
+                    template: paintsTpl.template,
+                    controller: mtg_paints.moduleName,
+                    controllerAs: "vm",
+                },
+                "footer": {}
+            }
+        });
+};
+
+export function ngRegister(appModule:ng.IModule){
+    appModule.config(route);
+};

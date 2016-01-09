@@ -1,0 +1,105 @@
+﻿
+.strike {
+    display: block;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap; 
+}
+
+.strike > span {
+    position: relative;
+    display: inline-block;
+}
+
+.strike > span:before,
+.strike > span:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 9999px;
+    height: 1px;
+    background: #808080;
+}
+
+.strike > span:before {
+    right: 100%;
+    margin-right: 15px;
+}
+
+.strike > span:after {
+    left: 100%;
+    margin-left: 15px;
+}
+
+.user > .background { 
+   position: relative; 
+   width: 304px;
+   height:130px;
+}
+
+.user > .avatar {
+	position:absolute;
+    left:10px;
+    top:20px;
+    width: 50px;
+	height: 50px;
+	border-radius: 25px;
+	-webkit-border-radius: 25px;
+	-moz-border-radius: 25px;
+	}
+
+.user > .displayName { 
+   position: absolute; 
+   top: 60px; 
+   left: 20px;
+   color: white;
+}
+
+.user > .email { 
+   position: absolute; 
+   top: 70px; 
+   left: 20px; 
+   color: white;
+}
+
+.user > .login { 
+   position: absolute; 
+   top: 72px; 
+   left: 205px; 
+   color: white;
+   display: inline;
+}
+
+.legal {
+    border-top: 1px solid #E0E0E0;
+    bottom: 0px;
+    color: #212121;
+    font-size: 13px;
+    height: 96px;
+    line-height: 24px;
+    padding: 24px;
+        padding-top: 24px;
+        padding-right-value: 24px;
+        padding-bottom: 24px;
+        padding-left-value: 24px;
+        padding-left-ltr-source: physical;
+        padding-left-rtl-source: physical;
+        padding-right-ltr-source: physical;
+        padding-right-rtl-source: physical;
+    position: absolute;
+    width: 100%;
+}	  
+
+md-icon.menu {
+ /* width: 48px;
+  height: 48px; */
+  color: rgba(255,255,255,0.87);
+  /* vertical-align:middle; */
+  /*padding-top:9px;*/
+}
+md-icon.sidenav {
+  /*width: 48px;
+  height: 48px;*/
+  color: rgba(255,255,255,0.87);
+  /*padding-top:4px;*/
+}

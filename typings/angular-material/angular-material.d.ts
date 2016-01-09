@@ -4,7 +4,7 @@
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
 
 /// <reference path="../angularjs/angular.d.ts" />
-declare module angular.material {
+declare module "angular-material" {
 
     interface IBottomSheetOptions {
         templateUrl?: string;
@@ -222,7 +222,7 @@ declare module angular.material {
         setDefaultTheme(theme: string): void;
         alwaysWatchTheme(alwaysWatch: boolean): void;
     }
-    
+
     interface IDateLocaleProvider {
         months: string[];
         shortMonths: string[];

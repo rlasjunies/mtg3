@@ -1,5 +1,5 @@
 ﻿/// <reference path="./tsd.d.ts" />
-declare module satellizer {
+declare module "satellizer" {
     //TODO finalize the declaration and propose it to definitely typed .org
 
     //https://github.com/sahat/satellizer#api-reference
@@ -7,15 +7,15 @@ declare module satellizer {
     export interface IAuthService {
         /**
          * $auth.login(user)
-         * 
+         *
          * Sign in via email and password where:
-         * 
+         *
          *      user - Plain JavaScript object.
-         * 
+         *
          * Returns
-         * 
+         *
          *      response - The $http response object from the server.
-         * 
+         *
          * $auth.login({
          *      email: $scope.email,
          *      password: $scope.password
@@ -25,13 +25,13 @@ declare module satellizer {
 
         /**
          * $auth.signup(user)
-         * 
+         *
          * Creates a local account with email and password. You can use whatever fields you want as long as you implement them on the server.
          * user - Plain JavaScript object.
-         * 
+         *
          * Returns
          *      response - The $http response object from the server.
-         * 
+         *
          * Usage
          *      $auth.signup({
          *          email: $scope.email,
@@ -45,18 +45,18 @@ declare module satellizer {
 
         /**
          * $auth.isAuthenticated()
-         * 
+         *
          * Returns true if a JWT is present in Local Storage and it is not expired, otherwise returns false.
-         * 
+         *
          * :exclamation: Note: This method expects the exp claim to check for the expiration time.
-         * 
+         *
          * Usage
-         * 
+         *
          *      // Controller
          *      $scope.isAuthenticated = function() {
          *          return $auth.isAuthenticated();
          *      };
-         * 
+         *
          *      <!-- Template -->
          *      <ul class="nav navbar-nav pull-right" ng-if="!isAuthenticated()">
          *          <li><a href="/#/login">Login</a></li>

@@ -1,37 +1,36 @@
 ﻿/// <reference path="../../../typings/browser.d.ts"/>
-module appState {
-    "use strict";
+"use strict";
+import * as appState from "../appState";
+import * as mtg_header from "../header/headerController";
+import * as mtg_login from "../login/loginController";
+import * as headerTpl from "../header/header.htm";
+import * as loginTpl from "./login.htm";
 
-    export var loginState: string = "login";
-    export var loginUrl: string = "/login";
-}
+"use strict";
 
-module mtg.views.login {
-    "use strict";
-
-    route.$inject = [
-        "$stateProvider"
-    ];
-    function route($stateProvider: angular.ui.IStateProvider) {
-        $stateProvider
-            .state(appState.loginState, {
+route.$inject = [
+    "$stateProvider"
+];
+function route($stateProvider: angular.ui.IStateProvider) {
+    $stateProvider
+        .state(appState.loginState, {
             url: appState.loginUrl,
             views: {
                 "header": {
-                    template: mtg.header.headerTemplate,
-                    controller: mtg.header.headerControllerStringName,
+                    template: headerTpl.template,
+                    controller: mtg_header.moduleName,
                     controllerAs: "vm"
                 },
                 "container": {
-                    template: mtg.login.loginTemplate,
-                    controller: mtg.login.loginControllerStringName,
+                    template: loginTpl.template,
+                    controller: mtg_login.moduleName,
                     controllerAs: "vm"
                 },
                 "footer": {}
             }
-            });
-    };
-    angular
-        .module("app")
-        .config(route);
-}
+        });
+};
+
+export function ngRegister(appModule:ng.IModule){
+    appModule.config(route);
+};

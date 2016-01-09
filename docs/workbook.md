@@ -7,6 +7,11 @@
 	=> remove mongoose
 	=> use neDB
 
+20160109:
+* add System.yml: file to build a modul graph dependency (from pluralsight JSPM training course)
+
+
+
 20160105:
 * conversion des fichiers htm en htm.ts, import des fichier *.htm
 * utilisation du plug-in gulp-html-to-ts

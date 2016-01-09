@@ -1,2 +1,2 @@
 //AUTO GENERATED DO NOT MODIFIED HERE 
- export var template = '<form name=\'userForm\' ng-submit=\'vm.submit()\' layout=\'column\' layout-align=\'center center\' novalidate>     <img ng-src=\'/pictures/{{vm.pictureFileName}}\' style=\'width:100%;height:auto\' /> </form> '
+ export var template = '<form name=\'userForm\' ng-submit=\'vm.submit()\' layout=\'column\' layout-align=\'center center\' novalidate>     <img ng-src=\'/_assets/pictures/{{vm.pictureFileName}}\' style=\'width:100%;height:auto\' /> </form> '

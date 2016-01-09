@@ -1,5 +1,5 @@
 /// <reference path="../../../typings/server.d.ts" />
-//"use strict";
+"use strict";
 import * as passport from "passport";
 import * as express from "express";
 
@@ -25,15 +25,15 @@ mtg.app.use(function(req: express.Request, res: express.Response, next) {
     next();
 });
 
-//authentication strategy
+// authentication strategy
 passport.use("local-register", localStrategy.register());
 passport.use("local-login", localStrategy.login());
 
 export function init() {
     mtg.app.post("/auth/register", passport.authenticate("local-register"), authLocal.register);
-    //mtg.app.post("/auth/login", passport.authenticate("local-login"), authLocal.login);
+    // mtg.app.post("/auth/login", passport.authenticate("local-login"), authLocal.login);
     mtg.routePostAdd("/auth/login", false, null, passport.authenticate("local-login"), authLocal.login)
     mtg.app.get("/auth/verifyemail", emailVerif.verify);
-    //mtg.app.post("/auth/facebook", authFacebook.facebookAuth);
+    // mtg.app.post("/auth/facebook", authFacebook.facebookAuth);
     mtg.app.post("/auth/google", authGoogle.googleAuth);
 }

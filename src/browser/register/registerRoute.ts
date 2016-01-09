@@ -1,36 +1,37 @@
-﻿namespace appState {
-    "use strict";
+﻿import * as satellizer from "satellizer";
+import * as mtg_header from "../header/headerController";
+import * as mtg_register from "../register/registerController";
+import * as appState from "../appState";
+import * as appRootScopeEvent from "../appRootScopeEvent";
 
-    export var registerState: string = "register";
-    export var registerUrl: string = "/register";
-}
+import * as headerTpl from "../header/header.htm";
+import * as registerTpl from "./register.htm";
 
-namespace mtg.register {
-    "use strict";
+"use strict";
 
-    route.$inject = [
-        "$stateProvider"
-    ];
-    function route($stateProvider: angular.ui.IStateProvider) {
-        $stateProvider
-            .state(appState.registerState, {
+route.$inject = [
+    "$stateProvider"
+];
+function route($stateProvider: angular.ui.IStateProvider) {
+    $stateProvider
+        .state(appState.registerState, {
             url: appState.registerUrl,
             views: {
                 "header": {
-                    template: mtg.header.headerTemplate,
-                    controller: mtg.header.headerControllerStringName,
+                    template: headerTpl.template,
+                    controller: mtg_header.moduleName,
                     controllerAs: "vm"
-                    },
+                },
                 "container": {
-                    template: mtg.register.registerTemplate,
-                    controller: mtg.register.registerControllerStringName,
+                    template: registerTpl.template, //mtg.register.registerTemplate,
+                    controller: mtg_register.moduleName,
                     controllerAs: "vm"
                 },
                 "footer": {}
             }
-            });
-    };
-    angular
-        .module("app")
-        .config(route);
-}
+        });
+};
+
+export function ngRegister(appModule:ng.IModule){
+    appModule.config(route);
+};

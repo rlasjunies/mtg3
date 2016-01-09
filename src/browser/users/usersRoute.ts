@@ -1,64 +1,67 @@
-﻿module appState {
-    "use strict";
+﻿import * as satellizer from "satellizer";
+import * as mtg_header from "../header/headerController";
+import * as mtg_user from "../users/userController";
+import * as mtg_main from "../main/mainController";
+import * as appState from "../appState";
+import * as appRootScopeEvent from "../appRootScopeEvent";
+import * as mtg_notificationSrv from "../services/notificationService";
+import * as mtg_usersCtrl from "../users/usersController";
+import * as headerTpl from '../header/header.htm';
+import * as userTpl from './user.htm';
+import * as usersTpl from './users.htm';
 
-    export var users: string = "users";
-    export var usersUrl: string = "/users";
-    export var user: string = "user";
+"use strict";
+
+export interface IUserRouteParams {
+    userId: string;
 }
 
-module mtg.users {
-    "use strict";
+export interface IUserStateParams extends angular.ui.IStateParamsService, IUserRouteParams {
+}
 
-    export interface IUserRouteParams {
-        userId: string;
-    }
+export class UserRouteParams implements IUserRouteParams {
+    constructor(public userId: string) { }
+}
 
-    export interface IUserStateParams extends angular.ui.IStateParamsService, IUserRouteParams {
-    }
-
-    export class UserRouteParams implements IUserRouteParams{
-        constructor(public userId: string) { }
-    }
-
-    route.$inject = [
-        "$stateProvider"
-    ];
-    function route($stateProvider: angular.ui.IStateProvider) {
-        $stateProvider
-            .state(appState.users, {
+route.$inject = [
+    "$stateProvider"
+];
+function route($stateProvider: angular.ui.IStateProvider) {
+    $stateProvider
+        .state(appState.users, {
             url: appState.usersUrl,
-                views: {
-                    "header": {
-                        template: mtg.header.headerTemplate,
-                        controller: mtg.header.headerControllerStringName,
-                        controllerAs: "vm"
-                    },
-                    "container": {
-                        template: mtg.users.usersTemplate,
-                        controller: mtg.users.usersControllerStringName,
-                        controllerAs: "vm"
-                    },
-                    "footer": {}
-                }
-            })
-            .state(appState.user, {
-            url: appState.usersUrl + "/{userId}",
             views: {
                 "header": {
-                    template: mtg.header.headerTemplate,
-                    controller: mtg.header.HeaderController,
+                    template: headerTpl.template,
+                    controller: mtg_header.moduleName,
                     controllerAs: "vm"
                 },
                 "container": {
-                    template: mtg.users.userTemplate,
-                    controller: mtg.users.userControllerStringName,
+                    template: usersTpl.template,
+                    controller: mtg_usersCtrl.moduleName,
                     controllerAs: "vm"
                 },
                 "footer": {}
             }
-            });
-    };
-    angular
-        .module("app")
-        .config(route);
-}
+        })
+        .state(appState.user, {
+            url: appState.usersUrl + "/{userId}",
+            views: {
+                "header": {
+                    template: headerTpl.template,
+                    controller: mtg_header.HeaderController,
+                    controllerAs: "vm"
+                },
+                "container": {
+                    template: userTpl.template,
+                    controller: mtg_user.moduleName,
+                    controllerAs: "vm"
+                },
+                "footer": {}
+            }
+        });
+};
+
+export function ngRegister(appModule:ng.IModule){
+    appModule.config(route);
+};

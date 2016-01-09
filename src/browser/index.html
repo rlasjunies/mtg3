@@ -2,49 +2,56 @@
 <html class='no-js'>
 <head>
     <meta charset='utf-8'>
-    <title>Corinne Païre-Lasjunies</title>
+    <title>Mind The Gap</title>
     <meta name='description' content=''>
     <meta name='viewport' content='width=device-width'>
+    <script src="jspm_packages/system.js"></script>
+    <script src="jspm_config.js"></script>
+    <script src="services/system.yuml.js"></script>
+    <script>
+        System.import('app.bootstrap')
+        .catch(console.error.bind(console));
+    </script>
+    <link href='jspm_packages/github/angular/bower-material@1.0.1/angular-material.css' rel='stylesheet' />
+    <link href='jspm_packages/npm/font-awesome@4.5.0/css/font-awesome.min.css' rel='stylesheet' />
+    <link href='jspm_packages/github/chieffancypants/angular-loading-bar@0.8.0/build/loading-bar.css' rel='stylesheet' />
 
-    <link href='../bower_components/angular-material/angular-material.css' rel='stylesheet' />
-    <link href='../bower_components/font-awesome/css/font-awesome.min.css' rel='stylesheet' />
-    <link href='../bower_components/angular-loading-bar/build/loading-bar.css' rel='stylesheet' />
-
-    <link href='../styles/mtg.css' rel='stylesheet' />
+    <link href='styles/mtg.css' rel='stylesheet' />
     <base href='/'>
 </head>
-<body ng-app='app'
+<body
       ng-controller='mtg.views.index.IndexController as vmIndex'
       layout='row'
       layout-fill
-      md-swipe-right='vmIndex.onSwipeRight()' 
+      md-swipe-right='vmIndex.onSwipeRight()'
       md-swipe-left='vmIndex.onSwipeLeft()'>
 
     <!-- LEFT MENU -->
     <md-sidenav layout='column'
                 class='site-sidenav md-sidenav-left md-whiteframe-z2'
                 md-component-id='left'>
-        <div ng-include="'sidenav.html'"></div>
+        <div ng-include="'sidenav/sidenav.html'"></div>
     </md-sidenav>
     <!--md-is-locked-open='$mdMedia('gt-md')'>-->
- 
+
     <!-- CONTENT -->
     <div layout='column' layout-fill>
         <md-toolbar md-scroll-shrink ui-view='header'></md-toolbar>
         <md-content ui-view='container'></md-content>
         <div ui-view='footer'></div>
     </div>
-
-    <script src='../bower_components/angular/angular.js'></script>
-    <script src='../bower_components/angular-animate/angular-animate.min.js'></script>
-    <script src='../bower_components/angular-aria/angular-aria.min.js'></script>
-    <script src='../bower_components/angular-messages/angular-messages.min.js'></script>
-    <script src='../bower_components/angular-material/angular-material.js'></script>
-    <script src='../bower_components/angular-loading-bar/build/loading-bar.js'></script>
-    <script src='../bower_components/angular-ui-router/release/angular-ui-router.min.js'></script>
-    <script src='../bower_components/satellizer/satellizer.js'></script>
-    <script src='../bower_components/angular-file-upload/angular-file-upload.min.js'></script>
+<!--
+    <script src='jspm_packages/github/angular/bower-angular@1.4.8/angular.min.js'></script>
+    <script src='jspm_packages/github/angular/bower-angular-animate@1.4.8/angular-animate.min.js'></script>
+    <script src='jspm_packages/github/angular/bower-angular-aria@1.4.8/angular-aria.min.js'></script>
+    <script src='jspm_packages/github/angular/bower-angular-messages@1.4.8/angular-messages.min.js'></script>
+    <script src='jspm_packages/github/angular/bower-material@1.0.1/angular-material.min.js'></script>
+    <script src='jspm_packages/github/chieffancypants/angular-loading-bar@0.8.0/build/loading-bar.min.js'></script>
+    <script src='jspm_packages/github/angular-ui/ui-router@0.2.15/angular-ui-router.min.js'></script>
+    <script src='jspm_packages/npm/satellizer@0.13.2/satellizer.min.js'></script>
+    <script src='jspm_packages/github/danialfarid/ng-file-upload-bower@11.0.0/ng-file-upload.min.js'></script>
 
     <script src='./app.js'></script>
+-->
 </body>
 </html>

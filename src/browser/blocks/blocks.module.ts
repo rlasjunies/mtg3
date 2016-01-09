@@ -1,6 +1,6 @@
-﻿((): void => {
-    "use strict";
-
-    angular
-        .module("mtg.blocks", []);
-})();
+﻿// ((): void => {
+//     "use strict";
+//
+//     angular
+//         .module("mtg.blocks", []);
+// })();

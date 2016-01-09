@@ -1,33 +1,30 @@
 ﻿/// <reference path="../../../typings/browser.d.ts"/>
-module appState {
-        "use strict";
 
-        export var logoutState: string = "logout";
-        export var logoutUrl: string = "/logout";
-    }
+import * as appState from "../appState";
+import * as mtg_logout from "./logoutController";
+import * as logoutTpl from "./logout.htm";
 
-module mtg.views.logout {
-    "use strict";
+"use strict";
 
-    route.$inject = [
-        "$stateProvider"
-    ];
-    function route($stateProvider: angular.ui.IStateProvider) {
-        $stateProvider
-            .state(appState.logoutState, {
+route.$inject = [
+    "$stateProvider"
+];
+function route($stateProvider: angular.ui.IStateProvider) {
+    $stateProvider
+        .state(appState.logoutState, {
             url: appState.logoutUrl,
             views: {
                 "header": {},
                 "container": {
-                    templateUrl: mtg.logout.logoutTemplate,
-                    controller: mtg.logout.logoutControllerStringName,
+                    templateUrl: logoutTpl.template ,
+                    controller: mtg_logout.moduleName,
                     controllerAs: "vm"
                 },
                 "footer": {}
             }
-            });
-    };
-    angular
-        .module("app")
-        .config(route);
-}
+        });
+};
+
+export function ngRegister(appModule:ng.IModule){
+    appModule.config(route);
+};

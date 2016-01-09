@@ -1,4 +1,5 @@
 ﻿///< reference path="../../../typings/server.d.ts"/>
+"use strict";
 
 import * as e from "express";
 import * as _ from "underscore";
@@ -9,7 +10,7 @@ import * as nodemailer_smtp_transport from "nodemailer-smtp-transport";
 
 import * as $ConfigSecret from "../services/configSecret";
 import * as $Config from "../services/config";
-//import * as xUser from "../shared/user";
+// import * as xUser from "../shared/user";
 import * as mdlUser from "../users/user.model";
 import * as mtg from "../services/mtg";
 
@@ -21,7 +22,7 @@ interface IModel {
 }
 
 interface IPayload {
-    sub: string
+    sub: string;
 }
 
 export function send(email: string, res: e.Response) {
@@ -29,7 +30,7 @@ export function send(email: string, res: e.Response) {
         sub: email
     };
 
-    var token = jwt.encode(payload, $ConfigSecret.secret.EMAIL_SECRET);
+    var token: string = jwt.encode(payload, $ConfigSecret.secret.EMAIL_SECRET);
 
     //var nSMTPTransportOptions: NodemailerSMTPTransportOptions = {
 
@@ -41,7 +42,7 @@ export function send(email: string, res: e.Response) {
         }
     };
 
-    var transporter = nodemailer.createTransport(nSMTPTransportOptions);
+    var transporter: nodemailer.Transporter = nodemailer.createTransport(nSMTPTransportOptions);
 
     var mailOptions: nodemailer.SendMailOptions = {
         from: "Richard Lasjunies<rlasjunies@gmail.com>",

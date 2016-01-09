@@ -1,44 +1,45 @@
 ﻿/// <reference path="../../../typings/browser.d.ts"/>
-module appState {
-    "use strict";
+import * as satellizer from "satellizer";
+import * as mtg_picturesCtrl from "./picturesController";
+import * as mtg_picturesUploadCtrl from "./picturesUploadController";
+import * as mtg_header from "../header/headerController";
+import * as mtg_main from "../main/mainController";
+import * as appState from "../appState";
+import * as appRootScopeEvent from "../appRootScopeEvent";
+import * as headerTpl from '../header/header.htm';
+import * as picturesTpl from './pictures.htm';
+import * as pictureTpl from './picture.htm';
+import * as picturesUploadTpl from './picture.htm';
 
-    export var picturesLoad: string = "PICTUREUPLOAD";
-    export var picturesLoadUrl: string = "/picturesupload";
-    export var picturesList: string = "PICTURES";
-    export var picturesListUrl: string = "/pictures";
-    export var picture: string = "PICTURE";
+"use strict";
+
+export interface IPictureRouteParams {
+    fileName: string;
 }
 
-module mtg.pictures {
-    "use strict";
+export interface IPictureStateParams extends angular.ui.IStateParamsService, IPictureRouteParams {
+}
 
-    export interface IPictureRouteParams {
-        fileName: string;
-    }
+export class PictureRouteParams implements IPictureRouteParams {
+    constructor(public fileName: string) { }
+}
 
-    export interface IPictureStateParams extends angular.ui.IStateParamsService, IPictureRouteParams {
-    }
-
-    export class PictureRouteParams implements IPictureRouteParams {
-        constructor(public fileName: string) { }
-    }
-
-    route.$inject = [
-        "$stateProvider"
-    ];
-    function route($stateProvider: angular.ui.IStateProvider) {
-        $stateProvider
-            .state(appState.picturesList, {
+route.$inject = [
+    "$stateProvider"
+];
+function route($stateProvider: angular.ui.IStateProvider) {
+    $stateProvider
+        .state(appState.picturesList, {
             url: appState.picturesListUrl,
             views: {
                 "header": {
-                    template:mtg.header.headerTemplate,
-                    controller: mtg.header.headerControllerStringName,
+                    template: headerTpl.template,
+                    controller: mtg_header.moduleName,
                     controllerAs: "vm"
                 },
                 "container": {
-                    template: mtg.pictures.picturesTemplate,
-                    controller: mtg.pictures.picturesControllerStringName,
+                    template: picturesTpl.template,
+                    controller: mtg_picturesCtrl.moduleName,
                     controllerAs: "vm"
                 },
                 "footer": {}
@@ -47,13 +48,13 @@ module mtg.pictures {
             url: appState.picturesListUrl + "/{fileName}",
             views: {
                 "header": {
-                    template: mtg.header.headerTemplate,
-                    controller: mtg.header.headerControllerStringName,
+                    template: headerTpl.template,
+                    controller: mtg_header.moduleName,
                     controllerAs: "vm"
                 },
                 "container": {
-                    template: mtg.pictures.pictureTemplate,
-                    controller: mtg.pictures.pictureControllerStringName,
+                    template: picturesTpl.template,
+                    controller: mtg_picturesCtrl.moduleName,
                     controllerAs: "vm"
                 },
                 "footer": {}
@@ -62,20 +63,20 @@ module mtg.pictures {
             url: appState.picturesLoadUrl,
             views: {
                 "header": {
-                    template: mtg.header.headerTemplate,
-                    controller: mtg.header.headerControllerStringName,
+                    template: headerTpl.template,
+                    controller: mtg_header.moduleName,
                     controllerAs: "vm"
                 },
                 "container": {
-                    template: mtg.pictures.picturesUploadTemplate,
-                    controller: mtg.pictures.pictureUploadControllerStringName,
+                    template: picturesUploadTpl.template,
+                    controller: mtg_picturesUploadCtrl.moduleName,
                     controllerAs: "vm"
                 },
                 "footer": {}
             }
         });
-    };
-    angular
-        .module("app")
-        .config(route);
-}
+};
+
+export function ngRegister(appModule:ng.IModule){
+    appModule.config(route);
+};

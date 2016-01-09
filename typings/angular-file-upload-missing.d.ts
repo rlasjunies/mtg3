@@ -1,5 +1,4 @@
-﻿/// <reference path="./tsd.d.ts" />
-declare module angular.FileUpload {
+﻿declare module "angular-file-upload" {
 
     export interface FileUploadConfig {
         /**

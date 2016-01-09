@@ -1,32 +1,38 @@
 ﻿/// <reference path="../../../typings/browser.d.ts"/>
 /// <reference path="../../../typings/satellizer-missing.d.ts"/>
-module mtg.authentication {
-    "use strict";
-    export class AuthInterceptor {
+import * as satellizer from "satellizer";
 
-        constructor(private $auth: satellizer.IAuthService) {
-        }
+"use strict";
 
-        request = (config) => {
-            var token = this.$auth.getToken();
+var moduleName = "browser.authentication.authInterceptor"
+export class AuthInterceptor {
 
-            if (token) {
-                config.headers.Authorization = "Bearer " + token;
-            }
-
-            return config;
-        };
-
-        response = (response) => {
-            return response;
-        };
+    constructor(private $auth: satellizer.IAuthService) {
     }
 
-    factory.$inject = [
-        "$auth"
-    ];
-    function factory(
-        $auth: satellizer.IAuthService) {
-        return new mtg.authentication.AuthInterceptor($auth);
+    request = (config) => {
+        var token = this.$auth.getToken();
+
+        if (token) {
+            config.headers.Authorization = "Bearer " + token;
+        }
+
+        return config;
+    };
+
+    response = (response) => {
+        return response;
     };
 }
+
+factory.$inject = [
+    "$auth"
+];
+function factory(
+    $auth: satellizer.IAuthService) {
+    return new AuthInterceptor($auth);
+};
+
+export function ngRegister(appModule:ng.IModule){
+    appModule.factory(moduleName, factory);
+};

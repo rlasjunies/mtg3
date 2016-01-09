@@ -6,17 +6,13 @@ import * as mtg_authentication from "./authentication/auth"
 import * as mtg_register from "../register/registerController";
 import * as mtg_serviceUserLogged from "../services/userLogged";
 import * as mtg_notificationSrv from "../services/notificationService";
-// namespace mtg.login {
 "use strict";
 
-export var loginControllerStringName = "mtg.login.LoginController";
+export var moduleName = "mtg.login.LoginController";
 
 export interface ILogin {
     submit: () => void;
 };
-
-// interface ILoginRootScope extends ngmtg.IRootScopeService {
-// }
 
 export class LoginController implements mtg_register.IController {
     public email: string;
@@ -102,7 +98,6 @@ export class LoginController implements mtg_register.IController {
     };
 }
 
-angular
-    .module("app")
-    .controller(loginControllerStringName, LoginController);
-// }
+export function ngRegister(appModule:ng.IModule){
+    appModule.controller(moduleName,LoginController);
+};
