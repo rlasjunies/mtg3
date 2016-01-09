@@ -19,7 +19,7 @@ export class UsersCollection extends db.DB {
                         active: true,
                         googleId: "",
                         facebookId: "",
-                        displayName: "",
+                        displayName: "Guest user",
                         picture: "",
                         allowedRoles: ["guest"]
                     }
@@ -35,7 +35,7 @@ export class UsersCollection extends db.DB {
                         active: true,
                         googleId: "",
                         facebookId: "",
-                        displayName: "",
+                        displayName: "Administrator",
                         picture: "",
                         allowedRoles: ["admin"]
                     }

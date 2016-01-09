@@ -33,7 +33,7 @@ export function create(expReq: express.Request, expRes: express.Response, next:F
         .then((insertedUser)=>{
             mtg.log.debug(`${moduleName}@create:${insertedUser}`);
             mtg.log.profile(`${moduleName}@create`);
-            expRes.status(200).send(user);})
+            expRes.status(200).send([user]);})
         .catch((err)=>{
             expRes.status(500).write({ message: "Error writing job!" });
         });
