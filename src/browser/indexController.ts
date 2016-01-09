@@ -40,6 +40,11 @@ export class IndexController {
         this.$mdSidenav("left").close();
     };
 
+    toggleLeft = (): void =>{
+        this.$mdSidenav("left").toggle();
+    }
+
+
 }
 
 // angular

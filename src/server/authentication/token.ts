@@ -22,10 +22,8 @@ export function createSendToken(user:mdlUser.IUserDoc, res:express.Response) {
     //exp.add(1, "minute");
     //console.log("exp2" + exp.format("unix"););
 
-
     var token = jwt.encode(payload, $configSecret.secret.JWT_SECRET);
 
-    // RL- attention changement
     return res.status(200).send({
         //user: user.toJSON(),
         user: user,

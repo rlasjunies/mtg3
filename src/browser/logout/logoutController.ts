@@ -33,7 +33,7 @@ export class LogoutController {
         this.userLoggedService.logout();
 
         this.notificationService.info("You are now logout!", "Authentication message");
-        this.$log.debug(moduleName + "loaded!");
+        this.$log.debug(moduleName + " loaded!");
         this.$state.go(appState.mainState);
     }
 }
