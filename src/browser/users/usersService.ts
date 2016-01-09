@@ -36,14 +36,14 @@ export class UserService implements IUserService {
     getMe(): angular.IPromise<IUser> {
         return this.$http.get("/api/adm/users/me")
             .then((response: angular.IHttpPromiseCallbackArg<IUser>): IUser => {
-                return <IUser>response.data[0];
+                return <IUser>response.data;
             });
     }
 
     getById(uniqueId: string): angular.IPromise<IUser> {
         return this.$http.get("/api/adm/users/" + uniqueId)
             .then((response: angular.IHttpPromiseCallbackArg<IUser>): IUser => {
-                return <IUser>response.data[0];
+                return <IUser>response.data;
             });
     }
 
