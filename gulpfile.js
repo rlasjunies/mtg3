@@ -83,7 +83,8 @@ gulp.task('watch', function (callback) {
             'htm2ts:watch',
             'browserStatic:watch', // currently only for config.js
             'browserTypeScript:watch',
-            'serverTypeScript:watch'
+            'serverTypeScript:watch',
+            'less:watch'
         ],
         callback);
 });
@@ -102,4 +103,9 @@ gulp.task('browserTypeScript:watch', function () {
 
 gulp.task('serverTypeScript:watch', function () {
     return gulp.watch('src/server/**/*.ts', ['serverTypeScript']);
+});
+
+gulp.task('less:watch', function () {
+    return gulp.watch('src/browser/**/*.less', ['lessCompile']);
+
 });
