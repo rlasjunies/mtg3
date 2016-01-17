@@ -63,7 +63,7 @@ export function register() {
                     facebookId: "",
                     allowedRoles: ["guest"]
                 }
-                mtg.db.users.createNew(userRegistering)
+                mtg.db.users.createNewInternalUser(userRegistering)
                     .then((userRegistered) => {
                         return done(null, userRegistered);
                     })

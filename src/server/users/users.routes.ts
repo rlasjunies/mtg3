@@ -29,7 +29,7 @@ export function create(expReq: express.Request, expRes: express.Response, next:F
 
     mtg.log.warn("Check the expReq.body message");
 
-    mtg.db.users.createNew(user)
+    mtg.db.users.createNewInternalUser(user)
         .then((insertedUser)=>{
             mtg.log.debug(`${moduleName}@create:${insertedUser}`);
             mtg.log.profile(`${moduleName}@create`);

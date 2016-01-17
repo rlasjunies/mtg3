@@ -7,10 +7,19 @@
 	=> remove mongoose
 	=> use neDB
 
+20160117:
+* solve the googleId, the problem was on create salt on empty paswword property :-(
+
 20160109:
 * add System.yml: file to build a modul graph dependency (from pluralsight JSPM training course)
-
-
+* finalize the conversion to ES6 via SystemJS
+* fix several issues
+* remaining issues:
+    * Google / external authentication does not work
+    * users list, does not shows displayName, green color if active
+    * when changing the roles of the users ... after authorization does not work anymore
+    * login layout not correct in FireFox
+    * loading bar not working anymore
 
 20160105:
 * conversion des fichiers htm en htm.ts, import des fichier *.htm

@@ -23,10 +23,10 @@ export class UsersCollection extends db.DB {
                         picture: "",
                         allowedRoles: ["guest"]
                     }
-                    this.createNew(newGuestUser)
+                    this.createNewInternalUser(newGuestUser)
                         .then((userGuest) => {
                             // this.update(userGuest._id, { $push: { allowedRoles: 'guest' } }).then((user) => {
-                            mtg.log.info(`user guest created - change password asap:${JSON.stringify(userGuest) }`);
+                            mtg.log.info(`user guest created - change password asap:${JSON.stringify(userGuest)}`);
                             // })
                         });
                     let newAdminUser: userMdl.IUser = {
@@ -39,10 +39,10 @@ export class UsersCollection extends db.DB {
                         picture: "",
                         allowedRoles: ["admin"]
                     }
-                    this.createNew(newAdminUser)
+                    this.createNewInternalUser(newAdminUser)
                         .then((userAdmin) => {
                             // this.update(userAdmin._id, { $push: { allowedRoles: 'admin' } }).then((user) => {
-                                mtg.log.info(`user admin created - change password asap:${JSON.stringify(userAdmin) }`);
+                            mtg.log.info(`user admin created - change password asap:${JSON.stringify(userAdmin)}`);
                             // })
                         });
                 } else {
@@ -54,7 +54,7 @@ export class UsersCollection extends db.DB {
             });
     }
 
-    createNew(user: userMdl.IUser): Promise<userMdl.IUserDoc> {
+    createNewInternalUser(user: userMdl.IUser): Promise<userMdl.IUserDoc> {
         //TODO parameters check
         //TODO check email format
         //TODO check already exist
@@ -63,15 +63,37 @@ export class UsersCollection extends db.DB {
         user.password = bcrypt.hashSync(user.password, salt);
 
         //return super.insert<IUser>(user);
-        return new Promise<userMdl.IUserDoc>((resolve,reject)=>{
-            super.insert<userMdl.IUserDoc>(user).then((userCreated)=>{
+        return new Promise<userMdl.IUserDoc>((resolve, reject) => {
+            super.insert<userMdl.IUserDoc>(user).then((userCreated) => {
                 delete userCreated.password;
                 resolve(userCreated);
-            }).catch((err)=>{
+            }).catch((err) => {
                 reject(err);
             })
         })
     }
+
+    /**
+     * register external user authentication in the repository
+     * @param  {userMdl.IUser} user
+     * @returns Promise
+     */
+    createNewexternalUser(user: userMdl.IUser): Promise<userMdl.IUserDoc> {
+        //TODO parameters check
+        //TODO check email format
+        //TODO check already exist
+
+        //return super.insert<IUser>(user);
+        // return new Promise<userMdl.IUserDoc>((resolve, reject) => {
+        //     super.insert<userMdl.IUserDoc>(user).then((userCreated) => {
+        //         resolve(userCreated);
+        //     }).catch((err) => {
+        //         reject(err);
+        //     })
+        // })
+        return this.insert<userMdl.IUserDoc>(user);
+    }
+
 
     /**
      * Basic update of whole the document
