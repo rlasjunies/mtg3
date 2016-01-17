@@ -36,8 +36,10 @@
 
     <!-- CONTENT -->
     <div layout='column' layout-fill>
-        <md-toolbar md-scroll-shrink ui-view='header'></md-toolbar>
-        <md-content ui-view='container'></md-content>
+        <!--<md-toolbar md-scroll-shrink ui-view='header'></md-toolbar>-->
+        <div ui-view='header'></div>
+        <!--<md-content ui-view='container' layout-fill layout='column'></md-content>-->
+        <div ui-view='container'></div>
         <div ui-view='footer'></div>
     </div>
 <!--
