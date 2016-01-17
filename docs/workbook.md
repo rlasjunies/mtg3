@@ -8,7 +8,8 @@
 	=> use neDB
 
 20160117:
-* solve the googleId, the problem was on create salt on empty paswword property :-(
+* fix the google authentication, the problem was on create salt on empty paswword property :-(
+* fix user list
 
 20160109:
 * add System.yml: file to build a modul graph dependency (from pluralsight JSPM training course)
