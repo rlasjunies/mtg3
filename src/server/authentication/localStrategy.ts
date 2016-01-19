@@ -1,6 +1,5 @@
 ﻿///< reference path="../../../typings/server.d.ts"/>
 import * as passport_local from "passport-local";
-//import * as libuser from "../shared/user";
 import * as mdlUser from "../users/user.model";
 import * as mtg from "../services/mtg";
 
@@ -24,16 +23,10 @@ export function login() {
                 mtg.log.info("User: %s logged in", userFound.email);
                 mtg.log.profile("passport-login");
 
-                // userFound.toJSON = function() {
-                //     //var user = this.toObject();
-                //     //delete user.password;
-                //     return JSON.stringify(userFound);
-                // };
                 return done(null, userFound);
             })
             .catch((errFindOneUser) => {
                 mtg.log.error("login.findOne error:" + errFindOneUser);
-                //return done(errUserNotFound);
                 return done(errFindOneUser);
             });
     });
@@ -41,10 +34,6 @@ export function login() {
 
 export function register() {
     return new passport_local.Strategy(strategyOptions, (email, password, done) => {
-        //var userModel = libuser.userModel();
-        //var qryUser = { email: username };
-
-        //libuser.userModel().findOne(qryUser, (err, dbUser) => {
         mtg.db.users.findByEmail(email)
             .then((userFound) => {
                 if (userFound) {
@@ -76,30 +65,6 @@ export function register() {
                 mtg.log.error("register.findOne error:" + errFindingByEmail);
                 return done(errFindingByEmail);
             })
-        // if (err) {
-        //     mtg.log.error("register.findOne error:" + err);
-        //     return done(err);
-        // }
-
-        // if (dbUser) {
-        //     // TODO message not clear when it happen
-        //     mtg.log.error("register.findOne user already exist in the database!");
-        //     return done(null, false, { message: "email already exists!" });
-        // }
-
-        //             var newUser: libuser.IUserDocument = new userModel({
-        //                 email: username,
-        //                 password: password
-        //             });
-        //
-        //             newUser.save(function(err) {
-        //                 if (err) {
-        //                     mtg.log.error("resgister.newUser.save error:" + err);
-        //                     return done(err);
-        //                 }
-        //                 return done(null, newUser);
-        //             });
-
     });
 };
 

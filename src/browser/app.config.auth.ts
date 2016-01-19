@@ -1,5 +1,5 @@
 ﻿/// <reference path="../../typings/browser.d.ts"/>
-// module mtg.config.auth {
+
 "use strict";
 config.$inject = [
     "$authProvider",
@@ -13,8 +13,9 @@ export function config($authProvider, $locationProvider: angular.ILocationProvid
     console.log("urlAuth" + urlAuth);
 
     $authProvider.google({
-        clientId: "149876745472-k3ubq3pbtll17pmuohdjfom0fpinklmc.apps.googleusercontent.com",
-        url: urlAuth + "/google",
+        clientId: "149876745472-k3ubq3pbtll17pmuohdjfom0fpinklmc.apps.googleusercontent.com"
+        //,
+        //url: urlAuth + "/google",
     });
 
     $authProvider.facebook({
@@ -25,8 +26,3 @@ export function config($authProvider, $locationProvider: angular.ILocationProvid
     $authProvider.loginUrl = urlAuth + "/login";
     $authProvider.signupUrl = urlAuth + "/register";
 }
-
-// angular
-//     .module("app")
-//     .config(config);
-// }
