@@ -15,8 +15,8 @@ export interface ILogin {
 };
 
 export class LoginController implements mtg_register.IController {
-    public email: string;
-    public password: string;
+    public email: string = "";
+    public password: string = "";
     public myvalid: boolean = true;
 
     static $inject = [
@@ -44,9 +44,35 @@ export class LoginController implements mtg_register.IController {
             //clean the header bar configuration
             this.$rootScope.headerConfiguration = new mtg_header.HeaderConfiguration();;
         });
+
+        //>Work around focus / autofill in FF
+        setTimeout(function() {
+
+            var el = angular.element(document.querySelector("#passwordField"));
+            // el.val("dummy");
+            el.val("");
+            el.focus();
+        }, 100);
+        setTimeout(function() {
+            var el = angular.element(document.querySelector("#emailField"));
+            // el.val("dummy");
+            el.val("");
+            el.focus();
+        }, 200);
+        //>Work around focus / autofill in FF
     }
 
     submit = () => {
+        //alert(this.email + this.password);
+        if ( this.email ==="") {
+            alert("fill email");
+            return;
+        }
+        if ( this.password ===""){
+            alert('fill a password');
+            return;
+        }
+        //alert(this.email + this.password);
         this.$auth.login<mtg_authentication.IAuthenticationServerResponse>({ email: this.email, password: this.password })
             .then((response) => {
                 //Initialize the logged user
@@ -67,6 +93,7 @@ export class LoginController implements mtg_register.IController {
                 this.$state.go("main");
             })
             .catch((err) => {
+                alert("dans catch error");
                 this.$log.error("login:" + JSON.stringify(err));
                 this.notificationService.error("Error registering!" + JSON.stringify(err));
 

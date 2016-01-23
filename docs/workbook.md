@@ -7,6 +7,12 @@
 	=> remove mongoose
 	=> use neDB
 
+20160123:
+* fix strange behavior in FF (work around bug on autofill)
+
+20160119:
+* fix when changing roles of the users ... after authorization does not work anymore
+
 20160117:
 * fix the google authentication, the problem was on create salt on empty paswword property :-(
 * fix user list
