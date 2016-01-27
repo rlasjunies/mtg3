@@ -6,7 +6,7 @@
 /// <reference path="../angularjs/angular.d.ts" />
 
 // Support for AMD require and CommonJS
-declare module 'angular-ui-router' {
+declare module 'ui-router' {
     // Since angular-ui-router adds providers for a bunch of
     // injectable dependencies, it doesn't really return any
     // actual data except the plain string 'ui.router'.
@@ -88,12 +88,12 @@ declare module angular.ui {
          * Arbitrary data object, useful for custom configuration.
          */
         data?: any;
-        
+
         /**
          * Boolean (default true). If false will not re-trigger the same state just because a search/query parameter has changed. Useful for when you'd like to modify $location.search() without triggering a reload.
          */
         reloadOnSearch?: boolean;
-        
+
         /**
          * Boolean (default true). If false will reload state on everytransitions. Useful for when you'd like to restore all data  to its initial state.
          */
