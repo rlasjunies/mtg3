@@ -14,44 +14,39 @@ export class NotificationService {
 
     constructor(private $mdToast: material.IToastService, private $log: angular.ILogService) {
         this.toastConfig = new Config();
-        //this.toastConfig.position = new ngmd.toastPosition();
-        this.toastConfig.hideDelay = 1000;
-        //this.toastConfig.position.right = true;
-        //this.toastConfig.position.bottom = true;
-
-        //toastr.options = {
-        //    "positionClass": "toast-bottom-right",
-        //};
         this.$log.debug("notificationService ... loaded");
     }
 
+    /**
+     * Raise success full notification. The notification will be hidden after 1000 ms
+     * @param  {string} message : message to show to the user
+     * @param  {string} title? : title of the notification
+     * @returns void
+     */
     public success(message: string, title?: string): void {
         if (title === undefined) {
             title = "";
         }
-        //toastr.success(message, title);
-        //this.toastConfig.content = title;
         var toast = this.$mdToast.simple()
             .textContent(message)
             .hideDelay(1000);
-        //.action('OK');
-        //.highlightAction(false)
-        //.position($scope.getToastPosition());
         this.$mdToast.show(toast);
-        //this.$mdToast.show(toast).then(function () {
-        //    alert('You clicked \'OK\'.');
-        //});
-
     }
 
+    /**
+     * Raise Error notification
+     * @param  {string} message : message to show to the user
+     * @param  {string} title? : title of the notification
+     * @returns void
+     */
     public error(message: string, title?: string): void {
         if (title === undefined) {
             title = "";
         }
-        //toastr.error(message, title);
         var toast = this.$mdToast.simple()
+            .theme("red")
             .textContent(message)
-            .hideDelay(1000);
+            .highlightAction(true);
         this.$mdToast.show(toast);
     }
 
@@ -59,10 +54,8 @@ export class NotificationService {
         if (title === undefined) {
             title = "";
         }
-        //toastr.info(message, title);
         var toast = this.$mdToast.simple()
-            .textContent(message)
-            .hideDelay(1000);
+            .textContent(message);
         this.$mdToast.show(toast);
     }
 
@@ -70,10 +63,8 @@ export class NotificationService {
         if (title === undefined) {
             title = "";
         }
-        //toastr.warning(message, title);
         var toast = this.$mdToast.simple()
-            .textContent(message)
-            .hideDelay(1000);
+            .textContent(message);
         this.$mdToast.show(toast);
     }
 }

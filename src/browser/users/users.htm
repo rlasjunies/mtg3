@@ -3,7 +3,7 @@
     <div layout-fill style='padding-left:5px;padding-right:5px'>
         <md-grid-list md-cols-sm='2' md-cols-md='3' md-cols-gt-md='5' md-row-height-gt-md='1:1' md-row-height='2:2' md-gutter='5px'>
             <md-grid-tile ng-class="{'enable':user.active,'disable':!user.active}"
-                ng-repeat='user in vm.usersView' ng-click='vm.onClick(user._id);'>
+                ng-repeat='user in vm.usersView' ng-click='vm.onUserClick(user._id);'>
                 {{user.email}}
                 <md-grid-tile-footer>
                     <h3>{{user.displayName}}</h3>

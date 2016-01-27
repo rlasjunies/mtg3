@@ -7,6 +7,16 @@
 	=> remove mongoose
 	=> use neDB
 
+20160127 Remaining issues:
+* loading bar not working anymore
+* user list not shown on mobile
+* no automatic tests
+* external login not working on mobile
+* project initialisation npm install, jspm install ... to be recheck
+        => test the installation from blank fields
+* npm script commands obsoletes
+*
+
 20160123:
 * fix strange behavior in FF (work around bug on autofill)
 

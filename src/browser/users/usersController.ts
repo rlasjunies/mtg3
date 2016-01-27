@@ -12,15 +12,6 @@ import * as mtg_usersSrv from "../users/usersService";
 
 export var moduleName = "mtg.users.UsersController";
 
-//export interface IUser {
-//    _id: string;
-//    email: string;
-//    password: string;
-//    active: boolean;
-//    googleId: string;
-//    facebookId: string;
-//    displayName: string;
-//}
 export class UsersController {
     public users: mtg_usersSrv.IUsers = [];
     public usersView: mtg_usersSrv.IUser[] = [];
@@ -35,7 +26,8 @@ export class UsersController {
         "$mdDialog",
         "$filter",
         "$state",
-        "UserService"
+        "UserService",
+        "resolved_users"
     ];
     constructor(
         private $scope: angular.IScope,
@@ -47,7 +39,8 @@ export class UsersController {
         private $mdDialog,
         private $filter,
         private $state: angular.ui.IStateService,
-        private userService: mtg_usersSrv.IUserService) {
+        private userService: mtg_usersSrv.IUserService,
+        private resolved_users : [Error,mtg_usersSrv.IUsers] ) {
 
         ////header definition
         this.$rootScope.headerConfiguration = new mtg_header.HeaderConfiguration("Users", true, false, false, false, false, false);
@@ -57,19 +50,18 @@ export class UsersController {
             this.$rootScope.headerConfiguration = new mtg_header.HeaderConfiguration();;
         });
 
-        this.userService.getAll().then((users: mtg_usersSrv.IUsers): void => {
+        let [err, users] = this.resolved_users;
+        if ( err ){
+            setTimeout(this.notificationService.error("Error message: \n" + JSON.stringify(err), "Cannot load users resources:"), 1000);
+        }else{
             this.users = users;
-            this.usersView = [].concat(this.users);
-            this.$log.debug("users loaded!");
-        }).catch((err) => {
-            this.$log.error("Error message: \n" + JSON.stringify(err), "Cannot load users resources:");
-            this.notificationService.error("Error message: \n" + JSON.stringify(err), "Cannot load users resources:");
-        });
+            this.usersView = [].concat(users);
+        }
 
         this.$log.debug("UsersController: Constructor");
     }
 
-    onClick = (userID: string): void => {
+    onUserClick = (userID: string): void => {
         var userParams: mtg_usersRte.UserRouteParams = new mtg_usersRte.UserRouteParams(userID);
         this.$state.go("user", userParams);
     };
