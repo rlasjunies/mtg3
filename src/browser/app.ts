@@ -3,7 +3,7 @@
 
 import * as ngMaterial from "angular-material";
 import * as satellizer from "satellizer";
-import * as ui_router from "angular-ui-router";
+import * as ui_router from "ui-router";
 import * as angular from "angular";
 import * as ngFileUpload from "angular-file-upload";
 import * as ngAnimate from "angular-animate";
